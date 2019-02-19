@@ -6,14 +6,10 @@ rules:
   name: cassandra_$1_$3
   labels:
     address: "$2"
-- pattern: org.apache.cassandra.metrics<type=HintedHandOffManager, name=Hints_created-(\S*)><>(Count|Value)
-  name: cassandra_hintedhandoffmanager_hints_created
+- pattern: org.apache.cassandra.metrics<type=HintedHandOffManager, name=(Hints_created|Hints_not_stored)-(\S*)><>(Count|Value)
+  name: cassandra_hintedhandoffmanager_$1
   labels:
-    address: "$1"
-- pattern: org.apache.cassandra.metrics<type=HintedHandOffManager, name=Hints_not_stored-(\S*)><>(Count|Value)
-  name: cassandra_hintedhandoffmanager_hints_not_stored
-  labels:
-    address: "$1"
+    address: "$2"
 - pattern: org.apache.cassandra.metrics<type=(\S*)(?:, ((?!scope)\S*)=(\S*))?(?:, scope=(\S*))?,
     name=(\S*)><>(Count|Value)
   name: cassandra_$1_$5
