@@ -7,9 +7,13 @@ rules:
   labels:
     address: "$2"
 - pattern: org.apache.cassandra.metrics<type=HintedHandOffManager, name=Hints_created-(\S*)><>(Count|Value)
-  name: cassandra_hints_created
+  name: cassandra_hintedhandoffmanager_hints_created
   labels:
-    address: "$2"
+    address: "$1"
+- pattern: org.apache.cassandra.metrics<type=HintedHandOffManager, name=Hints_not_stored-(\S*)><>(Count|Value)
+  name: cassandra_hintedhandoffmanager_hints_not_stored
+  labels:
+    address: "$1"
 - pattern: org.apache.cassandra.metrics<type=(\S*)(?:, ((?!scope)\S*)=(\S*))?(?:, scope=(\S*))?,
     name=(\S*)><>(Count|Value)
   name: cassandra_$1_$5
