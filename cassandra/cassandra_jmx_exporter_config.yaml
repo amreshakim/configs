@@ -6,7 +6,7 @@ rules:
   name: cassandra_$1_$3
   labels:
     address: "$2"
-- pattern: org.apache.cassandra.metrics<type=HintedHandOffManager, scope=(\S*), name=Hints_created-(\S*)><>(Count|Value)
+- pattern: org.apache.cassandra.metrics<type=HintedHandOffManager, name=Hints_created-(\S*)><>(Count|Value)
   name: cassandra_hints_created
   labels:
     address: "$2"
